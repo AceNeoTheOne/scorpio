@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "../web-services/api-client";
+import { CanceledError } from "../web-services/api-client";
 import { Spinner, Text } from "@chakra-ui/react";
+import VehiclesServices, { Vehicle } from "../web-services/vehicles-services";
 
-interface Vehicle {
-  VehicleID: string;
-  odometer: number;
-}
+//interface Vehicle {
+//VehicleID: string;
+//odometer: number;
+//}
 
 //interface Vehicles extends Array<Vehicle> {}
 
@@ -16,12 +17,12 @@ const VehiclesGrid = () => {
 
   //GET ALL VEHICLES
   useEffect(() => {
-    const controller = new AbortController();
+    //const controller = new AbortController();
 
     setIsLoading(true);
 
-    apiClient
-      .get<Vehicle[]>("vehicles", { signal: controller.signal })
+    const { request, cancel } = VehiclesServices.getAllVehicles();
+    request
       .then((response) => {
         setVehicles(response.data);
         setIsLoading(false);
@@ -32,13 +33,13 @@ const VehiclesGrid = () => {
         setIsLoading(false);
       });
 
-    return () => controller.abort();
+    return () => cancel();
   }, []);
 
   //DELETE VEHICLE
   useEffect(() => {
     const vehicle = "P-XX1";
-    apiClient.delete("vehicles/" + vehicle).catch((err) => {
+    VehiclesServices.deleteVehicle(vehicle).catch((err) => {
       setError(err.message);
     });
   }, []);
@@ -49,8 +50,7 @@ const VehiclesGrid = () => {
       VehicleID: "p-xx1",
       UA: 800,
     };
-    apiClient
-      .post("vehicles/", vehicle)
+    VehiclesServices.addVehicle(vehicle)
       .then((response) => {
         setError("vehicle added");
       })
@@ -65,8 +65,7 @@ const VehiclesGrid = () => {
     const vehicle = {
       UA: 1000,
     };
-    apiClient
-      .put("vehicles/" + vehicleId, vehicle)
+    VehiclesServices.updateVehicle(vehicleId, vehicle)
       .then((response) => {
         setError("vehicle updated");
       })
