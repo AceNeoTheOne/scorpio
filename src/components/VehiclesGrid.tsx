@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { CanceledError } from "../web-services/api-client";
 import { Spinner, Text } from "@chakra-ui/react";
-import VehiclesServices, { Vehicle } from "../web-services/vehicles-services";
-
-//interface Vehicle {
-//VehicleID: string;
-//odometer: number;
-//}
-
-//interface Vehicles extends Array<Vehicle> {}
+import VehiclesServices, { Vehicle } from "../web-services/vehicles";
 
 const VehiclesGrid = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  //GET ALL VEHICLES
   useEffect(() => {
-    //const controller = new AbortController();
-
     setIsLoading(true);
 
-    const { request, cancel } = VehiclesServices.getAllVehicles();
+    //GET ALL VEHICLES
+    const { request, cancel } = VehiclesServices.getSelect<Vehicle>();
     request
       .then((response) => {
         setVehicles(response.data);
@@ -33,45 +24,39 @@ const VehiclesGrid = () => {
         setIsLoading(false);
       });
 
+    //DELETE VEHICLE
+    //const vehicleID = "P-XX1";
+    //VehiclesServices.deleteDelete(vehicleID).catch((err) => {
+    //setError(err.message);
+    //});
+
+    //ADD VEHICLE
+    //const newVehicle = {
+    //VehicleID: "p-xx1",
+    //UA: 800,
+    //};
+    //VehiclesServices.postInsert(newVehicle)
+    //.then((response) => {
+    //setError("vehicle added");
+    //})
+    //.catch((err) => {
+    //setError(err.message);
+    //});
+
+    //UPDATE VEHICLE
+    //const conditions = "P-XX1";
+    //const vehicleData = {
+    //UA: 1000,
+    //};
+    //VehiclesServices.putUpdate(vehicleData, conditions)
+    //.then((response) => {
+    //setError("vehicle updated");
+    //})
+    //.catch((err) => {
+    //setError(err.message);
+    //});
+
     return () => cancel();
-  }, []);
-
-  //DELETE VEHICLE
-  useEffect(() => {
-    const vehicle = "P-XX1";
-    VehiclesServices.deleteVehicle(vehicle).catch((err) => {
-      setError(err.message);
-    });
-  }, []);
-
-  //ADD VEHICLE
-  useEffect(() => {
-    const vehicle = {
-      VehicleID: "p-xx1",
-      UA: 800,
-    };
-    VehiclesServices.addVehicle(vehicle)
-      .then((response) => {
-        setError("vehicle added");
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
-  }, []);
-
-  //UPDATE VEHICLE
-  useEffect(() => {
-    const vehicleId = "P-XX1";
-    const vehicle = {
-      UA: 1000,
-    };
-    VehiclesServices.updateVehicle(vehicleId, vehicle)
-      .then((response) => {
-        setError("vehicle updated");
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
   }, []);
 
   return (
