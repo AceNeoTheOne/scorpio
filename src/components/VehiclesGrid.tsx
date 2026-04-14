@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { CanceledError } from "../web-services/api-client";
-import { Spinner, Text } from "@chakra-ui/react";
-import VehiclesServices, { Vehicle } from "../web-services/vehicles";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useVehicles from "../hooks/useVehicles";
+import VehicleCard from "./VehicleCard";
 
 const VehiclesGrid = () => {
   const { vehicles, error, isLoading, setVehicles, setError, setIsLoading } = useVehicles();
@@ -11,11 +9,11 @@ const VehiclesGrid = () => {
     <>
       {error && <Text>{error}</Text>}
       {isLoading && <Spinner />}
-      <ul>
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} padding="10px" spacing={10}>
         {vehicles.map((unit) => (
-          <li key={unit.VehicleID}>{unit.VehicleID}</li>
+          <VehicleCard key={unit.VehicleID} vehicle={unit} />
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 };

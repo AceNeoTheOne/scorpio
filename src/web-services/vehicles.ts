@@ -14,4 +14,5 @@ interface UpdatedVehicle {
   UA: number;
 }
 
+//ENDPOINT DEFINITION
 export default create("vehicles");
