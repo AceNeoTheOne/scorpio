@@ -17,6 +17,12 @@ class HttpServices {
     return { request, cancel: () => controller.abort() };
   }
 
+  postSelect<T, R>(entity: T) {
+    const controller = new AbortController();
+    const request = apiClient.post<R[]>(this.endpoint, entity, { signal: controller.signal });
+    return { request, cancel: () => controller.abort() };
+  }
+
   deleteDelete(id: string) {
     return apiClient.delete(this.endpoint + "/" + id);
   }
