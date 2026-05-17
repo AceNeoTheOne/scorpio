@@ -42,32 +42,34 @@ const MaintenanceHistory = ({ isOpen, onClose, vehicleId, startDate, endDate }: 
 
         <ModalCloseButton />
 
-        <ModalBody overflowX="scroll">
-          <TableContainer minW="1300px">
-            <Table size="sm" variant="striped" colorScheme="teal" fontSize="sm">
+        <ModalBody>
+          <TableContainer maxWidth="100%" maxHeight="550px" overflowX="hidden" overflowY="scroll">
+            <Table maxWidth="100%" sx={{ tableLayout: "fixed" }} size="sm" variant="striped" colorScheme="teal" fontSize="sm">
               <TableCaption></TableCaption>
               <Thead>
                 <Tr>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Order
                   </Th>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Closed
                   </Th>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Status
                   </Th>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Vendor
                   </Th>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Line Type
                   </Th>
-                  <Th width="1px" fontSize="17px">
+                  <Th w="10%" fontSize="17px">
                     Part
                   </Th>
-                  <Th fontSize="17px">Description</Th>
-                  <Th isNumeric fontSize="17px">
+                  <Th w="30%" fontSize="17px">
+                    Description
+                  </Th>
+                  <Th w="10%" isNumeric fontSize="17px">
                     Line Total
                   </Th>
                 </Tr>
@@ -81,7 +83,7 @@ const MaintenanceHistory = ({ isOpen, onClose, vehicleId, startDate, endDate }: 
                     <Td>{expense.VENDORID}</Td>
                     <Td>{expense.LINETYPE}</Td>
                     <Td>{expense.PARTNUMBER}</Td>
-                    <Td>{expense.DESCRIP}</Td>
+                    <Td whiteSpace="normal">{expense.DESCRIP}</Td>
                     <Td isNumeric>{formatCurrency(expense.LINETOTAL)}</Td>
                   </Tr>
                 ))}

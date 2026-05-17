@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import VehiclesGrid from "../components/VehiclesGrid";
 import SideMenu from "../components/SideMenu";
 import { useState } from "react";
+import { boxStyle } from "../styles/styles";
 
 function Dashboard() {
   const bgColor = useColorModeValue("gray.100", "gray.700");
@@ -38,13 +39,15 @@ function Dashboard() {
         <NavBar onStartValueChange={handleStartValueChange} onEndValueChange={handleEndValueChange} />
       </GridItem>
       <Show above="lg">
-        <GridItem area="aside" paddingX={5}>
-          <SideMenu />
+        <GridItem area="aside">
+          <Box sx={boxStyle} bg={bgColor} width="200px">
+            <SideMenu />
+          </Box>
         </GridItem>
       </Show>
 
       <GridItem area="main">
-        <Box borderWidth="2px" borderRadius="lg" margin="10px" bg={bgColor}>
+        <Box sx={boxStyle} bg={bgColor}>
           <VehiclesGrid startDate={startDate} endDate={endDate} />
         </Box>
       </GridItem>
