@@ -4,12 +4,15 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
 import "./index.css";
 import App from "./App";
+import { CookiesProvider } from "react-cookie";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </ChakraProvider>
   </React.StrictMode>,
 );

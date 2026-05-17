@@ -14,12 +14,12 @@ function Dashboard() {
   const [endDate, setEndDate] = useState(today.toISOString().split("T")[0]);
 
   const handleStartValueChange = (dateValue: string) => {
-    console.log("Start Date: " + dateValue);
+    //console.log("Start Date: " + dateValue);
     setStartDate(dateValue);
   };
 
   const handleEndValueChange = (dateValue: string) => {
-    console.log("End Date: " + dateValue);
+    //console.log("End Date: " + dateValue);
     setEndDate(dateValue);
   };
 

@@ -1,6 +1,6 @@
-import { Badge, HStack, Icon, Text } from "@chakra-ui/react";
-import { NumericFormat } from "react-number-format";
 import { FaTachometerAlt } from "react-icons/fa";
+import { HStack, Icon, Text } from "@chakra-ui/react";
+import { NumericFormat } from "react-number-format";
 
 interface Props {
   odometer: number;

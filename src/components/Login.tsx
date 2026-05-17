@@ -10,6 +10,11 @@ import UsersServices, { User, LoginStatus } from "../web-services/users";
 import { useNavigate } from "react-router-dom";
 
 //INTERFACES, SCHEMAS
+
+interface Props {
+  onLogin: (user: string) => void;
+}
+
 const schema = z.object({
   email: z.string().min(1, { message: "Please enter an email" }),
   password: z.string().min(1, { message: "Please enter your password" }),
@@ -17,7 +22,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 //COMPONENT FUNCTION
-const Login = () => {
+const Login = ({ onLogin }: Props) => {
   //SHOW BUTTON FUNCTIONALITY
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -47,6 +52,7 @@ const Login = () => {
       request
         .then((response) => {
           navigate("/dashboard");
+          onLogin(data.email);
         })
         .catch((err) => {
           if (err instanceof CanceledError) return;
@@ -78,13 +84,19 @@ const Login = () => {
 
               <InputGroup>
                 <InputLeftAddon sx={inputStyle}>Enter email</InputLeftAddon>
-                <Input {...register("email")} type="email" textOverflow="ellipsis" sx={inputStyle} />
+                <Input {...register("email")} type="email" textOverflow="ellipsis" sx={inputStyle} autoComplete="true" />
               </InputGroup>
               {errors.email && <Text color="yellow">{errors.email.message}</Text>}
 
               <InputGroup>
                 <InputLeftAddon sx={inputStyle}>Password</InputLeftAddon>
-                <Input {...register("password")} paddingRight="66px" type={show ? "text" : "password"} sx={inputStyle} />
+                <Input
+                  {...register("password")}
+                  paddingRight="66px"
+                  type={show ? "text" : "password"}
+                  sx={inputStyle}
+                  autoComplete="true"
+                />
                 <InputRightElement width="60px">
                   <Button height="28px" onClick={handleClick} margin="1px" fontSize="16px" marginRight="6px">
                     {show ? "Hide" : "Show"}

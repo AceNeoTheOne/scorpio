@@ -9,7 +9,7 @@ interface ProtectedRouteProps {
 const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const location = useLocation();
   let cookiePresent = true;
-  const token = getCookie("token");
+  const token = getCookie("user");
   if (typeof token === "undefined") cookiePresent = false;
   if (!cookiePresent) {
     // Redirect to login, but save the current location to return after login
