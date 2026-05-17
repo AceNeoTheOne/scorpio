@@ -18,7 +18,7 @@ const NavBar = (props: Props) => {
       <Flex align="center" padding="5px 15px 5px 15px">
         <Image src={logo} boxSize="40px" objectFit="contain" marginRight={3} />
         <Text fontSize="lg" as="b">
-          Scorpio
+          React
         </Text>
         <Spacer />
         <DatePicker {...props} labelValue="Start Date" />
