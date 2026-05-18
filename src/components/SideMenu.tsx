@@ -1,7 +1,10 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box } from "@chakra-ui/react";
-import React from "react";
 
-const SideMenu = () => {
+interface Props {
+  onSelectAnItem: (item: string) => void;
+}
+
+const SideMenu = ({ onSelectAnItem }: Props) => {
   return (
     <Accordion allowToggle={true}>
       <AccordionItem>
@@ -13,7 +16,24 @@ const SideMenu = () => {
             <AccordionIcon />
           </AccordionButton>
         </h2>
-        <AccordionPanel pb={4}>Fleet Overview</AccordionPanel>
+        <AccordionPanel
+          pb={4}
+          onClick={() => {
+            onSelectAnItem("Fleet Overview");
+          }}
+          _hover={{ cursor: "pointer" }}
+        >
+          Fleet Overview
+        </AccordionPanel>
+        <AccordionPanel
+          pb={4}
+          onClick={() => {
+            onSelectAnItem("PM Supervision");
+          }}
+          _hover={{ cursor: "pointer" }}
+        >
+          PM Supervision
+        </AccordionPanel>
       </AccordionItem>
 
       <AccordionItem>

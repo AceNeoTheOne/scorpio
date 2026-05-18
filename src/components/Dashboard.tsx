@@ -4,6 +4,7 @@ import VehiclesGrid from "../components/VehiclesGrid";
 import SideMenu from "../components/SideMenu";
 import { useState } from "react";
 import { boxStyle } from "../styles/styles";
+import PMSupervision from "./PMSupervision";
 
 function Dashboard() {
   const bgColor = useColorModeValue("gray.100", "gray.700");
@@ -14,6 +15,8 @@ function Dashboard() {
   const [startDate, setStartDate] = useState(lastWeek.toISOString().split("T")[0]);
   const [endDate, setEndDate] = useState(today.toISOString().split("T")[0]);
 
+  const [item, setClickedMenuItem] = useState("Fleet Overview");
+
   const handleStartValueChange = (dateValue: string) => {
     //console.log("Start Date: " + dateValue);
     setStartDate(dateValue);
@@ -22,6 +25,11 @@ function Dashboard() {
   const handleEndValueChange = (dateValue: string) => {
     //console.log("End Date: " + dateValue);
     setEndDate(dateValue);
+  };
+
+  const handleMenuClick = (item: string) => {
+    console.log(item);
+    setClickedMenuItem(item);
   };
 
   return (
@@ -41,14 +49,15 @@ function Dashboard() {
       <Show above="lg">
         <GridItem area="aside">
           <Box sx={boxStyle} bg={bgColor} width="200px">
-            <SideMenu />
+            <SideMenu onSelectAnItem={handleMenuClick} />
           </Box>
         </GridItem>
       </Show>
 
       <GridItem area="main">
         <Box sx={boxStyle} bg={bgColor}>
-          <VehiclesGrid startDate={startDate} endDate={endDate} />
+          {item === "Fleet Overview" && <VehiclesGrid startDate={startDate} endDate={endDate} />}
+          {item === "PM Supervision" && <PMSupervision />}
         </Box>
       </GridItem>
     </Grid>
