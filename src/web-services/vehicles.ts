@@ -3,6 +3,7 @@ import create from "./http-services";
 export interface Vehicle {
   VehicleID: string;
   odometer: number;
+  tankCurrentPercentFull: number;
 }
 
 interface NewVehicle {

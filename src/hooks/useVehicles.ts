@@ -11,7 +11,7 @@ const useVehicles = () => {
     setIsLoading(true);
 
     //GET ALL VEHICLES
-    const { request, cancel } = VehiclesServices.getSelect<Vehicle>();
+    const { request, cancel } = VehiclesServices.getSelectAll<Vehicle>();
     request
       .then((response) => {
         setVehicles(response.data);

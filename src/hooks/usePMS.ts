@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
 import { CanceledError } from "../web-services/api-client";
-import ExpensesServices, { Parameters, Expenses } from "../web-services/expenses";
+import PMSServices, { PMS } from "../web-services/pms";
+import { Vehicle } from "../web-services/vehicles";
 
-const useExpenses = (parameters: Parameters) => {
-  const [expenses, setExpenses] = useState<Expenses[]>([]);
+const usePMS = (vehicle: Vehicle) => {
+  const [pms, setPms] = useState<PMS[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
 
-    //GET EXPENSES
-    const { request, cancel } = ExpensesServices.postSelect<Parameters, Expenses>(parameters);
+    //GET ALL VEHICLES
+    const { request, cancel } = PMSServices.getSelect<PMS>(vehicle.VehicleID);
     request
       .then((response) => {
-        setExpenses(response.data);
+        setPms(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
@@ -26,6 +27,6 @@ const useExpenses = (parameters: Parameters) => {
     return () => cancel();
   }, []);
 
-  return { expenses, error, isLoading, setExpenses, setError, setIsLoading };
+  return { pms, error, isLoading, setPms, setError, setIsLoading };
 };
-export default useExpenses;
+export default usePMS;

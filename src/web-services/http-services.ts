@@ -11,9 +11,15 @@ class HttpServices {
     this.endpoint = endpoint;
   }
 
-  getSelect<T>() {
+  getSelectAll<T>() {
     const controller = new AbortController();
     const request = apiClient.get<T[]>(this.endpoint, { signal: controller.signal });
+    return { request, cancel: () => controller.abort() };
+  }
+
+  getSelect<T>(id: string) {
+    const controller = new AbortController();
+    const request = apiClient.get<T[]>(this.endpoint + "/" + id, { signal: controller.signal });
     return { request, cancel: () => controller.abort() };
   }
 

@@ -4,7 +4,7 @@ import VehiclesGrid from "../components/VehiclesGrid";
 import SideMenu from "../components/SideMenu";
 import { useState } from "react";
 import { boxStyle } from "../styles/styles";
-import PMSupervision from "./PMSupervision";
+import PMSGrid from "./PMSGrid";
 
 function Dashboard() {
   const bgColor = useColorModeValue("gray.100", "gray.700");
@@ -57,7 +57,7 @@ function Dashboard() {
       <GridItem area="main">
         <Box sx={boxStyle} bg={bgColor}>
           {item === "Fleet Overview" && <VehiclesGrid startDate={startDate} endDate={endDate} />}
-          {item === "PM Supervision" && <PMSupervision />}
+          {item === "PM Supervision" && <PMSGrid />}
         </Box>
       </GridItem>
     </Grid>

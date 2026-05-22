@@ -1,10 +1,26 @@
 import mackTruck from "../assets/Mack Truck.png";
 import { Vehicle } from "../web-services/vehicles";
-import { Card, CardBody, Heading, Icon, Image, useDisclosure, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  Icon,
+  Image,
+  Progress,
+  Spacer,
+  Stack,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
 import Odometer from "./Odometer";
 import { FaWrench } from "react-icons/fa";
 import MaintenanceHistory from "./MaintenanceHistory";
 import { MouseEvent } from "react";
+import { boxStyle } from "../styles/styles";
 
 interface Props {
   vehicle: Vehicle;
@@ -13,6 +29,8 @@ interface Props {
 }
 
 const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
+  const bgColor = useColorModeValue("green.200", "green.500");
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const toast = useToast();
@@ -35,18 +53,33 @@ const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
 
   return (
     <>
-      <Card borderRadius={10} overflow="hidden" backgroundColor={"green.500"}>
+      <Card borderRadius={10} overflow="hidden" bg={bgColor}>
         <Image src={mackTruck} backgroundColor={"white"} />
         <CardBody>
-          <Heading fontSize="2xl">{vehicle.VehicleID}</Heading>
-          <Odometer odometer={vehicle.odometer} />
-          <Icon
-            as={FaWrench}
-            _hover={{ cursor: "pointer" }}
-            onClick={(event) => {
-              handleClick(event);
-            }}
-          />
+          <Flex align="center" mb={4}>
+            <Heading fontSize="2xl">{vehicle.VehicleID}</Heading>
+            <Spacer />
+            <Odometer odometer={vehicle.odometer} />
+          </Flex>
+          <Flex>
+            <Text fontSize="14px" as="b">
+              FUEL LEVEL
+            </Text>
+            <Spacer />
+            <Icon
+              as={FaWrench}
+              _hover={{ cursor: "pointer" }}
+              onClick={(event) => {
+                handleClick(event);
+              }}
+              color="yellow.100"
+              boxSize={5}
+            />
+          </Flex>
+
+          <Box sx={boxStyle} overflow="hidden">
+            <Progress colorScheme="blue" size="sm" value={vehicle.tankCurrentPercentFull} />
+          </Box>
         </CardBody>
       </Card>
       {isOpen && (
