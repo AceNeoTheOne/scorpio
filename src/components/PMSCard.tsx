@@ -1,6 +1,19 @@
 import mackTruck from "../assets/Mack Truck.png";
 import { Vehicle } from "../web-services/vehicles";
-import { Box, Card, CardBody, Flex, Heading, Image, Progress, Skeleton, Spacer, Text, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Heading,
+  Image,
+  Progress,
+  Skeleton,
+  SkeletonText,
+  Spacer,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import Odometer from "./Odometer";
 import usePMS from "../hooks/usePMS";
 import { boxStyle } from "../styles/styles";
@@ -28,6 +41,7 @@ const PMSCard = ({ vehicle }: Props) => {
           </Flex>
 
           {isLoading && skeletons.map((skeleton) => <Skeleton key={skeleton} height="15px" margin={2} />)}
+
           {pms.map((pm) => (
             <>
               <Text textTransform="uppercase" fontSize="14px" as="b">

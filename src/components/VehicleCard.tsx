@@ -10,7 +10,6 @@ import {
   Image,
   Progress,
   Spacer,
-  Stack,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -54,7 +53,7 @@ const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
   return (
     <>
       <Card borderRadius={10} overflow="hidden" bg={bgColor}>
-        <Image src={mackTruck} backgroundColor={"white"} />
+        <Image objectFit="cover" src={mackTruck} backgroundColor={"white"} />
         <CardBody>
           <Flex align="center" mb={4}>
             <Heading fontSize="2xl">{vehicle.VehicleID}</Heading>

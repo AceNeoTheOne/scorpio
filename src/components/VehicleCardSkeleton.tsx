@@ -1,11 +1,14 @@
-import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
+import mackTruck from "../assets/Mack Truck.png";
+import { Card, CardBody, Image, Skeleton, SkeletonText } from "@chakra-ui/react";
 
 const VehicleCardSkeleton = () => {
   return (
     <Card borderRadius={10} backgroundColor={"green.500"}>
-      <Skeleton width="295px" height="200px" />
+      <Skeleton>
+        <Image objectFit="cover" src={mackTruck} />
+      </Skeleton>
       <CardBody>
-        <SkeletonText />
+        <SkeletonText noOfLines={4} skeletonHeight="15px" />
       </CardBody>
     </Card>
   );
