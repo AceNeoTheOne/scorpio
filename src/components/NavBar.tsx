@@ -1,4 +1,4 @@
-import { Flex, useColorModeValue, Box, Image, Spacer, Text } from "@chakra-ui/react";
+import { Flex, useColorModeValue, Box, Image, Spacer, Text, Button } from "@chakra-ui/react";
 import logo from "../assets/ITL Logo.webp";
 import ColorModeSwitch from "./ColorModeSwitch";
 import DatePicker from "./DatePicker";
@@ -7,6 +7,7 @@ import { lightStyle, darkStyle, boxStyle } from "../styles/styles";
 interface Props {
   onStartValueChange: (dateValue: string) => void;
   onEndValueChange: (dateValue: string) => void;
+  onRefresh: () => void;
 }
 
 const NavBar = (props: Props) => {
@@ -22,6 +23,15 @@ const NavBar = (props: Props) => {
         <Spacer />
         <DatePicker {...props} labelValue="Start Date" />
         <DatePicker {...props} labelValue="End Date" />
+        <Button
+          fontSize="16px"
+          marginRight={3}
+          onClick={(event) => {
+            props.onRefresh();
+          }}
+        >
+          Refresh
+        </Button>
         <ColorModeSwitch />
       </Flex>
     </Box>

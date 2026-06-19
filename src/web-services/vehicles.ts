@@ -4,6 +4,9 @@ export interface Vehicle {
   VehicleID: string;
   odometer: number;
   tankCurrentPercentFull: number;
+  driver1: string;
+  driver2: string;
+  ignitionStatus: string;
 }
 
 interface NewVehicle {

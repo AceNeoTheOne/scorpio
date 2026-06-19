@@ -17,6 +17,8 @@ function Dashboard() {
 
   const [item, setClickedMenuItem] = useState("Fleet Overview");
 
+  const [refreshKey, setRefreshKey] = useState<number>(0);
+
   const handleStartValueChange = (dateValue: string) => {
     //console.log("Start Date: " + dateValue);
     setStartDate(dateValue);
@@ -32,6 +34,11 @@ function Dashboard() {
     setClickedMenuItem(item);
   };
 
+  const handleRefresh = (): void => {
+    // Incrementing the key forces a complete remount
+    setRefreshKey((prev) => prev + 1);
+  };
+
   return (
     <Grid
       templateAreas={{
@@ -44,7 +51,7 @@ function Dashboard() {
       }}
     >
       <GridItem area="nav">
-        <NavBar onStartValueChange={handleStartValueChange} onEndValueChange={handleEndValueChange} />
+        <NavBar onStartValueChange={handleStartValueChange} onEndValueChange={handleEndValueChange} onRefresh={handleRefresh} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
@@ -56,8 +63,8 @@ function Dashboard() {
 
       <GridItem area="main">
         <Box sx={boxStyle} bg={bgColor}>
-          {item === "Fleet Overview" && <VehiclesGrid startDate={startDate} endDate={endDate} />}
-          {item === "PM Supervision" && <PMSGrid />}
+          {item === "Fleet Overview" && <VehiclesGrid startDate={startDate} endDate={endDate} key={refreshKey} />}
+          {item === "PM Supervision" && <PMSGrid key={refreshKey} />}
         </Box>
       </GridItem>
     </Grid>
