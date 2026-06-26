@@ -1,5 +1,5 @@
 import mackTruck from "../assets/Mack Truck.png";
-import { Vehicle } from "../web-services/vehicles";
+import { Vehicle } from "../web-services/vehicles/vehicles";
 import {
   Box,
   Card,
@@ -10,6 +10,7 @@ import {
   Icon,
   Image,
   Progress,
+  Skeleton,
   Spacer,
   Text,
   useColorModeValue,
@@ -17,11 +18,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import Odometer from "./Odometer";
-import { FaWrench, FaUser } from "react-icons/fa";
+import { FaWrench, FaUser, FaTachometerAlt, FaKey, FaStopwatch, FaLocationArrow, FaStop } from "react-icons/fa";
 import MaintenanceHistory from "./MaintenanceHistory";
 import { MouseEvent } from "react";
 import { boxStyle } from "../styles/styles";
-import useMiles_x_Int from "../hooks/useMiles_x_Int";
+import useMiles_x_Int from "../hooks/vehicles/useMiles_x_Int";
 import Miles_x_Int from "./Milex_x_Int";
 
 interface Props {
@@ -36,7 +37,6 @@ const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const toast = useToast();
-
   const handleClick = (mseEvent: MouseEvent) => {
     const d1 = new Date(startDate);
     const d2 = new Date(endDate);
@@ -58,6 +58,7 @@ const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
     vcSTART_DATE: startDate + " 00:00:00",
     vcEND_DATE: endDate + " 23:59:59",
   };
+  const skeletons = [1];
   const { miles_x_int, error, isLoading, setMiles_x_int, setError, setIsLoading } = useMiles_x_Int(parameters);
 
   return (
@@ -70,37 +71,56 @@ const VehicleCard = ({ vehicle, startDate, endDate }: Props) => {
             <Spacer />
             <Odometer odometer={vehicle.odometer} />
           </Flex>
-
           <hr
             style={{
               backgroundColor: "rgb(255, 255, 255)",
               height: "1px",
             }}
           />
-
+          {isLoading && skeletons.map((skeleton) => <Skeleton key={skeleton} height="13px" mt={3.5} />)}
           <Flex mt={2}>
             {miles_x_int.map((vehicle_miles) => (
               <Miles_x_Int key={vehicle_miles.VehicleID} miles={vehicle_miles.MILES} />
             ))}
           </Flex>
-
-          <HStack>
-            {vehicle.driver1 && <Icon as={FaUser} />}
-            <Text>{vehicle.driver1}</Text>
-            <Spacer />
-            {vehicle.driver2 && <Icon as={FaUser} />}
-            <Text>{vehicle.driver2}</Text>
-          </HStack>
-
           <Flex mt={2}></Flex>
-
           <hr
             style={{
               backgroundColor: "rgb(255, 255, 255)",
               height: "1px",
             }}
           />
-
+          <Flex mt={2}></Flex>
+          <HStack>
+            {vehicle.OMN_driver1 && <Icon as={FaUser} />}
+            <Text>{vehicle.OMN_driver1}</Text>
+            <Spacer />
+            {vehicle.OMN_driver2 && <Icon as={FaUser} />}
+            <Text>{vehicle.OMN_driver2}</Text>
+          </HStack>
+          <HStack>
+            <Icon as={FaKey} />
+            <Text>ENGINE {vehicle.ignitionStatus}</Text>
+            <Spacer />
+            <Icon as={FaTachometerAlt} />
+            <Text>{vehicle.speed} MPH</Text>
+          </HStack>
+          <HStack>
+            <Icon as={FaStopwatch} />
+            <Text>{vehicle.Hours_In_Spot} HOUR(S)</Text>
+            <Spacer />
+          </HStack>
+          <HStack>
+            <Icon as={FaLocationArrow} />
+            <Text>{vehicle.geo_ref2}</Text>
+          </HStack>
+          <Flex mt={2}></Flex>
+          <hr
+            style={{
+              backgroundColor: "rgb(255, 255, 255)",
+              height: "1px",
+            }}
+          />
           <Flex mt={4}>
             <Text fontSize="14px" as="b">
               FUEL LEVEL

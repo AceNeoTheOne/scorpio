@@ -11,7 +11,7 @@ const Miles_x_Int = ({ miles }: Props) => {
     <HStack>
       <Icon as={FaArrowsAltH} />
       <Text>
-        <NumericFormat value={miles} displayType={"text"} thousandSeparator={true} />
+        <NumericFormat value={miles} displayType={"text"} thousandSeparator={true} /> MILES
       </Text>
     </HStack>
   );

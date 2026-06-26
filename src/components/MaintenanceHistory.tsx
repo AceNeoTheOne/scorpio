@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
-import useExpenses from "../hooks/useExpenses";
+import useExpenses from "../hooks/vehicles/useExpenses";
 
 interface Props {
   isOpen: boolean;

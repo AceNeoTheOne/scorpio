@@ -1,5 +1,5 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
-import useVehicles from "../hooks/useVehicles";
+import useVehicles from "../hooks/vehicles/useVehicles";
 import VehicleCardSkeleton from "./VehicleCardSkeleton";
 import PMSCard from "./PMSCard";
 import useTitle from "../hooks/useTitle";

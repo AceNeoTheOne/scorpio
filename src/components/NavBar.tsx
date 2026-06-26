@@ -1,5 +1,6 @@
 import { Flex, useColorModeValue, Box, Image, Spacer, Text, Button } from "@chakra-ui/react";
 import logo from "../assets/ITL Logo.webp";
+import logo_vite from "../assets/vite.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import DatePicker from "./DatePicker";
 import { lightStyle, darkStyle, boxStyle } from "../styles/styles";
@@ -16,7 +17,7 @@ const NavBar = (props: Props) => {
   return (
     <Box sx={boxStyle} background={bgColor}>
       <Flex align="center" padding="5px 15px 5px 15px">
-        <Image src={logo} boxSize="40px" objectFit="contain" marginRight={3} />
+        <Image src={logo_vite} boxSize="40px" objectFit="contain" marginRight={3} />
         <Text fontSize="lg" as="b">
           React
         </Text>

@@ -11,7 +11,7 @@ const SideMenu = ({ onSelectAnItem }: Props) => {
         <h2>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              Main
+              Vehicles
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -40,11 +40,21 @@ const SideMenu = ({ onSelectAnItem }: Props) => {
         <h2>
           <AccordionButton>
             <Box as="span" flex="1" textAlign="left">
-              Settings
+              Drivers
             </Box>
             <AccordionIcon />
           </AccordionButton>
         </h2>
+
+        <AccordionPanel
+          pb={4}
+          onClick={() => {
+            onSelectAnItem("Company Drivers");
+          }}
+          _hover={{ cursor: "pointer" }}
+        >
+          Company Drivers
+        </AccordionPanel>
       </AccordionItem>
     </Accordion>
   );

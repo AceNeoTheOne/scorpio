@@ -1,4 +1,4 @@
-import create from "./http-services";
+import create from "../http-services";
 
 export interface PMS {
   VehicleID: string;

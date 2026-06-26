@@ -1,4 +1,4 @@
-import { FaTachometerAlt } from "react-icons/fa";
+import { FaRoad } from "react-icons/fa";
 import { HStack, Icon, Text } from "@chakra-ui/react";
 import { NumericFormat } from "react-number-format";
 
@@ -9,9 +9,9 @@ interface Props {
 const Odometer = ({ odometer }: Props) => {
   return (
     <HStack>
-      <Icon as={FaTachometerAlt} />
+      <Icon as={FaRoad} />
       <Text>
-        <NumericFormat value={odometer} displayType={"text"} thousandSeparator={true} />
+        <NumericFormat value={odometer} displayType={"text"} thousandSeparator={true} /> MILES
       </Text>
     </HStack>
   );

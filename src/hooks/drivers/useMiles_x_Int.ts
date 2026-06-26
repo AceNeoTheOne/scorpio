@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { CanceledError } from "../web-services/api-client";
-import ExpensesServices, { Parameters, Miles_x_Int } from "../web-services/miles_x_int";
+import { CanceledError } from "../../web-services/api-client";
+import MilesServices, { Parameters, Miles_x_Int } from "../../web-services/drivers/miles_x_int";
 
 const useMiles_x_Int = (parameters: Parameters) => {
   const [miles_x_int, setMiles_x_int] = useState<Miles_x_Int[]>([]);
@@ -11,7 +11,7 @@ const useMiles_x_Int = (parameters: Parameters) => {
     setIsLoading(true);
 
     //GET EXPENSES
-    const { request, cancel } = ExpensesServices.postSelect<Parameters, Miles_x_Int>(parameters);
+    const { request, cancel } = MilesServices.postSelect<Parameters, Miles_x_Int>(parameters);
     request
       .then((response) => {
         setMiles_x_int(response.data);

@@ -66,10 +66,10 @@ const Login = ({ onLogin }: Props) => {
   };
 
   return (
-    <Center bgGradient="linear(to-r, gray.600, black)" h="100vh" padding="10px">
+    <Center bgGradient="linear(to-r, gray.700, black)" h="100vh" padding="10px">
       <Stack spacing={5}>
         <Center>
-          <Image src={logo} boxSize="40px" objectFit="contain" marginRight={3} />
+          <Image src={logo} boxSize="80px" objectFit="contain" marginRight={3} />
           <Text as="b" fontSize="25px">
             ITL
           </Text>

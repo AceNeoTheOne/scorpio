@@ -1,6 +1,6 @@
 //THIS FILE CONTAINS CODE THAT WAS REFACTORED IN FILE web-services\http-services
 //FOR GUIDANCE AND LEARNING ONLY, NOT REFERENCED IN ANY OTHER PART OF THE CODE
-import apiClient, { CanceledError } from "./api-client";
+import apiClient, { CanceledError } from "../api-client";
 
 export interface Vehicle {
   VehicleID: string;

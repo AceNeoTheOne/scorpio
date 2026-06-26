@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { CanceledError } from "../web-services/api-client";
-import ExpensesServices, { Parameters, Expenses } from "../web-services/expenses";
+import { CanceledError } from "../../web-services/api-client";
+import ExpensesServices, { Parameters, Expenses } from "../../web-services/vehicles/expenses";
 
 const useExpenses = (parameters: Parameters) => {
   const [expenses, setExpenses] = useState<Expenses[]>([]);

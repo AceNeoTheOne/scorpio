@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { CanceledError } from "../web-services/api-client";
-import VehiclesServices, { Vehicle } from "../web-services/vehicles";
+import { CanceledError } from "../../web-services/api-client";
+import VehiclesServices, { Vehicle } from "../../web-services/vehicles/vehicles";
 
 const useVehicles = () => {
   const [vehicles, setVehicles] = useState<Vehicle[]>([]);

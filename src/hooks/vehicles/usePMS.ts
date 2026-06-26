@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { CanceledError } from "../web-services/api-client";
-import PMSServices, { PMS } from "../web-services/pms";
-import { Vehicle } from "../web-services/vehicles";
+import { CanceledError } from "../../web-services/api-client";
+import PMSServices, { PMS } from "../../web-services/vehicles/pms";
+import { Vehicle } from "../../web-services/vehicles/vehicles";
 
 const usePMS = (vehicle: Vehicle) => {
   const [pms, setPms] = useState<PMS[]>([]);
